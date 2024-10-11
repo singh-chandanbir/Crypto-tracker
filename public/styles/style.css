@@ -1,0 +1,196 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+* {
+  box-sizing: border-box;
+}
+
+@media (min-width: 700px) {
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: 10vh;
+    scroll-snap-stop: always;
+    transition-timing-function: cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  }
+}
+
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  background: black;
+}
+
+section {
+  scroll-snap-align: start;
+}
+
+.body-text {
+  @apply text-white italic font-extrabold whitespace-pre-line sm:text-lg md:text-sm lg:text-lg xl:text-lg;
+}
+
+h1 {
+  @apply text-purple font-bakbak font-extrabold text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl;
+}
+
+h2 {
+  @apply text-purple font-bakbak font-extrabold text-xl sm:text-lg md:text-xl lg:text-3xl xl:text-4xl;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.scrollable {
+  max-height: 400px; /* Adjust height as needed */
+  overflow-y: auto;
+  padding-right: 10px; /* Optional: To avoid hiding content behind scrollbar */
+}
+
+/* Optional: Additional styles for the scroll bar */
+.scrollable::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: black;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.down-arrow-container {
+  position: absolute;
+  top: 90%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Center both horizontally and vertically */
+  width: 16px; /* Adjust as needed */
+  height: 36px; /* Adjust as needed (height of two chevrons + spacing) */
+  animation: jumpInfinite 1.5s infinite;
+}
+
+.down-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border: 0px solid;
+  border-radius: 0px;
+  color: white;
+}
+
+.down-arrow:first-child {
+  top: 0;
+}
+
+.down-arrow:last-child {
+  top: 14px; /* Adjust the spacing between the two chevrons */
+}
+
+.down-arrow:after {
+  content: " ";
+  position: absolute;
+  top: 12px;
+  left: -8px;
+  width: 16px;
+  height: 16px;
+  border-bottom: 4px solid;
+  border-right: 4px solid;
+  border-radius: 4px;
+  transform: rotateZ(45deg);
+  color: white;
+}
+
+@keyframes jumpInfinite {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px); /* Adjust the bounce height as needed */
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.canvas {
+  margin-top: 50px;
+}
+
+.h-navbar {
+  height: 10vh;
+}
+
+.h-payplot-screen {
+  height: 90vh;
+}
+
+.mt-navbar {
+  margin-top: 10vh;
+}
+
+/* Customize the scrollbar track */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Customize the scrollbar track to be transparent */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Customize the scrollbar thumb with rounded edges */
+::-webkit-scrollbar-thumb {
+  background: #db00ff; /* Change the color of the thumb */
+  border-radius: 5px; /* Add rounded edges */
+}
+
+/* Customize the scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #db00ff; /* Change the color on hover */
+}
+
+/*Tailwind Styles*/
+
+.navbar {
+  @apply transition ease-in duration-200 fixed top-0 w-full h-navbar bg-background text-white border-gray-300 z-[100];
+}
+
+.navbarScrolled {
+  @apply transition ease-in duration-200 fixed top-0 w-full h-navbar bg-purple text-white border-gray-300 z-[100];
+}
+
+.black_btn {
+  @apply w-[20%] rounded-full border border-black bg-white py-3 px-5 text-sm text-cyan-600 transition-all hover:bg-cyan-600 hover:text-white font-satoshi;
+}
