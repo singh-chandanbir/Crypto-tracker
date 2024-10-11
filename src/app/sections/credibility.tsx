@@ -20,9 +20,9 @@ export default function Credibility({
 
   function updateVotes() {
     if (updated || !entered) {
-      return
+      return;
     } else {
-      setUpdated(true)
+      setUpdated(true);
     }
     getWalletInfo(walletID).then((info) => {
       if (info) {
@@ -52,8 +52,8 @@ export default function Credibility({
   };
 
   return (
-    <section className="flex flex-col mt-40 items-center w-full h-payplot-screen bg-background">
-      <div className="flex w-full flex-col items-center flex-[2]">
+    <section className="flex flex-col pt-60 pb-10 items-center w-full h-payplot-screen bg-background">
+      <div className="flex w-full flex-col items-center flex-[2] bg-background pb-20">
         <h1 className="text-4xl text-white mt-10 font-bakbak">
           Credibility Information
         </h1>

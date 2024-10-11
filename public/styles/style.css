@@ -26,7 +26,6 @@ body,
 
 body {
   margin: 0;
-  background: black;
 }
 
 section {
@@ -155,7 +154,7 @@ h2 {
 
 .canvas {
   margin-top: 50px;
-  width: 80vw;
+  width: 100vw;
 }
 
 .h-navbar {

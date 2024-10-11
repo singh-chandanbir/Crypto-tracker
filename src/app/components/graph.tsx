@@ -173,7 +173,7 @@ const Graph: React.FC<GraphProps> = ({ walletID, walletData }) => {
   return (
     <div
       ref={networkRef}
-      style={{ width: "80%", height: "600px", border: "1px solid #db00ff" }}
+      style={{ width: "80%", height: "600px", border: "1px solid #db00ff",margin:"auto" }}
     />
   );
 };
