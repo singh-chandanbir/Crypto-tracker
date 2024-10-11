@@ -16,22 +16,30 @@ const Graph: React.FC<GraphProps> = ({ walletID, walletData }) => {
     const nodesMap = new Map<string, number>();
     const nodesData: Node[] = [];
     const edgesData: Edge[] = [];
-  
+
     let currentId = 0;
-  
+
     transactions.forEach((transaction) => {
       const { fromAddress, toAddress } = transaction;
-  
+
       if (!nodesMap.has(fromAddress)) {
         nodesMap.set(fromAddress, currentId);
-        nodesData.push({ id: currentId, label: fromAddress.slice(0,5), color: "#3f3f3f" });
+        nodesData.push({
+          id: currentId,
+          label: fromAddress.slice(0, 5),
+          color: "#3f3f3f",
+        });
         currentId++;
       }
 
       if (toAddress) {
         if (!nodesMap.has(toAddress)) {
           nodesMap.set(toAddress, currentId);
-          nodesData.push({ id: currentId, label: toAddress.slice(0,5), color: "#e37e19" });
+          nodesData.push({
+            id: currentId,
+            label: toAddress.slice(0, 5),
+            color: "#e37e19",
+          });
           currentId++;
         }
         edgesData.push({
@@ -46,7 +54,6 @@ const Graph: React.FC<GraphProps> = ({ walletID, walletData }) => {
 
   useEffect(() => {
     if (networkRef.current) {
-      // Get nodes and edges
       const { nodesData, edgesData } = buildNodesAndEdges(walletData.transactions);
 
       // Create DataSet instances
@@ -71,19 +78,24 @@ const Graph: React.FC<GraphProps> = ({ walletID, walletData }) => {
           font: {
             color: "#ffffff",
           },
-          size: 30, 
+          size: 100, // Set the default node size
           shape: "circle",
         },
         edges: {
           color: "#ffffff",
         },
         interaction: {
-          zoomView: false,
+          zoomView: true, // Enable zoom
         },
         height: "100%",
         width: "100%",
         physics: {
-          stabilization: false,
+          barnesHut: {
+            gravitationalConstant: -5000,
+            springLength: 150,
+            springConstant: 0.005,
+          },
+          minVelocity: 0.75,
         },
       };
 
@@ -93,8 +105,6 @@ const Graph: React.FC<GraphProps> = ({ walletID, walletData }) => {
 
       network.on("selectNode", (event) => {
         const nodeId = event.nodes[0];
-        console.log("Selected node:", nodeId);
-        console.log("Selected node data:", nodes.get(nodeId));
         if (nodeId) {
           // Update the color of the selected node
           nodes.update({ id: nodeId, color: "#db00ff" });
@@ -117,20 +127,20 @@ const Graph: React.FC<GraphProps> = ({ walletID, walletData }) => {
             }
           });
 
-      
-
-
-
           // Apply glow effect to selected node
-          document.querySelectorAll(".vis-network .vis-node").forEach((nodeElement) => {
-            const elementId = parseInt(nodeElement.getAttribute("nodeid") || "");
-            if (elementId !== nodeId) {
-              (nodeElement as HTMLElement).style.boxShadow = "";
-            }
-          });
+          document
+            .querySelectorAll(".vis-network .vis-node")
+            .forEach((nodeElement) => {
+              const elementId = parseInt(
+                nodeElement.getAttribute("nodeid") || "",
+              );
+              if (elementId !== nodeId) {
+                (nodeElement as HTMLElement).style.boxShadow = "";
+              }
+            });
 
           const selectedNodeElement = document.querySelector(
-            `.vis-network .vis-node[nodeid="${nodeId}"]`
+            `.vis-network .vis-node[nodeid="${nodeId}"]`,
           );
           if (selectedNodeElement) {
             (selectedNodeElement as HTMLElement).style.boxShadow =
@@ -160,7 +170,12 @@ const Graph: React.FC<GraphProps> = ({ walletID, walletData }) => {
     }
   }, [walletID, walletData, selectedNodeId]);
 
-  return <div className="h-full" ref={networkRef}></div>;
+  return (
+    <div
+      ref={networkRef}
+      style={{ width: "80%", height: "600px", border: "1px solid #db00ff" }}
+    />
+  );
 };
 
 export default Graph;

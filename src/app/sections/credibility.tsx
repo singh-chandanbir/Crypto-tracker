@@ -52,7 +52,7 @@ export default function Credibility({
   };
 
   return (
-    <section className="flex flex-col items-center w-full h-payplot-screen bg-background">
+    <section className="flex flex-col mt-40 items-center w-full h-payplot-screen bg-background">
       <div className="flex w-full flex-col items-center flex-[2]">
         <h1 className="text-4xl text-white mt-10 font-bakbak">
           Credibility Information
