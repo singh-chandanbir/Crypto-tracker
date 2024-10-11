@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <>
       <head>
-        <title>Home | PayPlot</title>
+        <title>Home | CRYPTO TRACKER</title>
       </head>
       <body>
         <div className="min-h-screen w-full">

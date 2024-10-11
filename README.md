@@ -35,7 +35,7 @@ We have implemented a smart contract on Moonbeam that allows users to:
 
 - **Vote on Wallet Addresses**: Users can cast votes to express their trust or concerns about specific wallet addresses.
 - **Provide Credibility Scores**: The smart contract aggregates votes to calculate a credibility score for each wallet address, which is visible to all users.
-- **Query and Display Scores**: Retrieve and display credibility scores in the PayPlot application to assist in decision-making and enhance transparency.
+- **Query and Display Scores**: Retrieve and display credibility scores in the Crypto Tracker application to assist in decision-making and enhance transparency.
 
 ## Future Goals
 
@@ -51,7 +51,7 @@ Our vision is to expand this platform to connect more blockchains, offering a un
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/hardiv/payplot.git
+   git clone //url to this repository
    ```
 
 2. Navigate to the project directory:

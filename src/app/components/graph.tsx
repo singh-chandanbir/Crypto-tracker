@@ -71,7 +71,7 @@ const Graph: React.FC<GraphProps> = ({ walletID, walletData }) => {
           font: {
             color: "#ffffff",
           },
-          size: 30,
+          size: 30, 
           shape: "circle",
         },
         edges: {
@@ -93,6 +93,8 @@ const Graph: React.FC<GraphProps> = ({ walletID, walletData }) => {
 
       network.on("selectNode", (event) => {
         const nodeId = event.nodes[0];
+        console.log("Selected node:", nodeId);
+        console.log("Selected node data:", nodes.get(nodeId));
         if (nodeId) {
           // Update the color of the selected node
           nodes.update({ id: nodeId, color: "#db00ff" });
@@ -114,6 +116,10 @@ const Graph: React.FC<GraphProps> = ({ walletID, walletData }) => {
               nodes.update({ id: node.id, color: "#3f3f3f" });
             }
           });
+
+      
+
+
 
           // Apply glow effect to selected node
           document.querySelectorAll(".vis-network .vis-node").forEach((nodeElement) => {

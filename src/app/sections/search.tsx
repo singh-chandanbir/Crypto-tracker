@@ -133,3 +133,5 @@ export default function Search({ setWalletID, setEntered, setValid, entered, val
     </section>
   );
 }
+
+
